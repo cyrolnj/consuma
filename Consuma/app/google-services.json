@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "534315423408",
+    "firebase_url": "https://consumadb.firebaseio.com",
+    "project_id": "consumadb",
+    "storage_bucket": "consumadb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:534315423408:android:db83a7b89b21f359",
+        "android_client_info": {
+          "package_name": "com.solutions.oryc.consuma"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "534315423408-pa7mo7bj3dv47cqmvnnhp3goflifa0b0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.solutions.oryc.consuma",
+            "certificate_hash": "968d6927909503bc3b8fa33ca84062d63aea86e8"
+          }
+        },
+        {
+          "client_id": "534315423408-cnv40hcjmqb16lkcg099i2ajkbovntvm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.solutions.oryc.consuma",
+            "certificate_hash": "d9c3e991d8116d9f4fd662ca186ba7a19f0ffc6f"
+          }
+        },
+        {
+          "client_id": "534315423408-9fjdkv6h8q7spk7b08ctrvfv8bj393mp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCldTrwQm_DHTL9gylgc2AfIzQTWthi0UA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "534315423408-9fjdkv6h8q7spk7b08ctrvfv8bj393mp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
