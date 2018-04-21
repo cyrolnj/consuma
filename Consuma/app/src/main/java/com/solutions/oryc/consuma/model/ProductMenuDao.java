@@ -1,5 +1,6 @@
 package com.solutions.oryc.consuma.model;
 
+import com.solutions.oryc.consuma.control.Product;
 import com.solutions.oryc.consuma.control.ProductMenu;
 
 import java.util.ArrayList;
@@ -10,13 +11,31 @@ import java.util.ArrayList;
 
 public class ProductMenuDao {
 
-    public static ArrayList<ProductMenu> getList(){
-        ArrayList<ProductMenu> retorno = new ArrayList<>();
+    private static ArrayList<ProductMenu> menuList = new ArrayList<>();
+    private static ProductMenu currentMenu;
 
-        for(int i = 0; i < 5; i++) {
-            retorno.add(new ProductMenu("Cardápio"+i));
-        }
-
-        return retorno;
+    public static ProductMenu getCurrentMenu() {
+        return currentMenu;
     }
+
+    public static ArrayList<ProductMenu> getList(){
+        return menuList;
+    }
+
+    public static void addProductToCurrentMenu(Product product){
+        currentMenu.addProduct(product);
+    }
+
+    public static void setCurrentMenu(String menuName){
+        currentMenu = new ProductMenu(menuName);
+    }
+
+    public static void setCurrentMenuName(String menuName){
+        currentMenu.setName(menuName);
+    }
+
+    public static void addMenu(ProductMenu productMenu){
+        menuList.add(productMenu);
+    }
+
 }

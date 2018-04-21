@@ -17,4 +17,10 @@
     <string name="save">Save</string>
     <string name="logout">Logout</string>
     <string name="my_menus">My menus</string>
+    <string name="new_menu">New menu</string>
+    <string name="product_name">Product Name</string>
+    <string name="price">Price:</string>
+    <string name="new_product">New Product</string>
+    <string name="short_description">Short description:</string>
+    <string name="menu_list">Menu List</string>
 </resources>

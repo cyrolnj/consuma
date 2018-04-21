@@ -15,7 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
-
         <activity android:name=".LoginActivity" />
         <activity
             android:name=".CreateAccountActivity"
@@ -34,7 +33,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".MenuListActivity" />
-        <activity android:name=".EditMenuActivity"></activity>
+        <activity android:name=".EditMenuActivity" />
+        <activity android:name=".EditProductActivity"></activity>
     </application>
 
 </manifest>

@@ -68,13 +68,8 @@ public class CreateAccountActivity extends AppCompatActivity {
         }
 
         if (!error) {
-            message = "Cadastro realizado com sucesso";
-
-            Toast toast = Toast.makeText(context, message, duration);
-            toast.show();
-
             //try create account
-            fbAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            fbAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(CreateAccountActivity.this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
@@ -89,8 +84,6 @@ public class CreateAccountActivity extends AppCompatActivity {
                     }
                 }
             });
-
-
         }
 
     }

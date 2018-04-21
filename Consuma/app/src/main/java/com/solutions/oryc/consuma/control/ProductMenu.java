@@ -34,4 +34,5 @@ public class ProductMenu {
     public void setProductList(ArrayList productList) {
         this.productList = productList;
     }
+
 }
