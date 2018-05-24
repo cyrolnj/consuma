@@ -23,4 +23,5 @@
     <string name="new_product">New Product</string>
     <string name="short_description">Short description:</string>
     <string name="menu_list">Menu List</string>
+    <string name="currency">$</string>
 </resources>

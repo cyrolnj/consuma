@@ -4,8 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="100dp">
-
+    android:layout_height="100dp"
+    >
 
     <TextView
         android:id="@+id/vtxtProductName"
@@ -19,25 +19,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView3"
+    <TextView
+        android:id="@+id/vtxtProductPrice"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_delete_black_24dp" />
-
-    <EditText
-        android:id="@+id/txtProductPrice"
-        android:layout_width="187dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:inputType="numberDecimal"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/vtxtProductPriceLabel" />
+        app:layout_constraintStart_toEndOf="@+id/vtxtProductPriceLabel"
+        app:layout_constraintTop_toBottomOf="@+id/vtxtProductName" />
 
     <TextView
         android:id="@+id/vtxtProductPriceLabel"
@@ -45,11 +38,33 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
-        android:text="@string/price"
-        android:textSize="25sp"
+        android:layout_marginTop="8dp"
+        android:text="@string/currency"
         android:textColor="@color/colorPrimary"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vtxtProductName" />
+
+    <Button
+        android:id="@+id/btnDeleteProduct"
+        android:layout_width="35dp"
+        android:layout_height="33dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/ic_delete_black_24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnAddToCart"
+        android:layout_width="35dp"
+        android:layout_height="33dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/ic_add_shopping_cart_black_48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDeleteProduct" />
 
 
 </android.support.constraint.ConstraintLayout>

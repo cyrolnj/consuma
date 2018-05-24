@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.zxing.Result;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.solutions.oryc.consuma.control.ProductMenu;
 
 
 public class DesktopActivity extends AppCompatActivity {
@@ -56,7 +57,11 @@ public class DesktopActivity extends AppCompatActivity {
             if(result.getContents() == null) {
                 Toast.makeText(this, "Cancelado", Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(this, "Scaneado: " + result.getContents(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(this, "Scaneado: " + result.getContents(), Toast.LENGTH_LONG).show();
+
+                Intent readProductMenuIntent = new Intent(this, ReadMenuActivity.class);
+                readProductMenuIntent.putExtra("productMenuId", result.getContents());
+                startActivityForResult(readProductMenuIntent, 200);
             }
         }
     }
@@ -72,6 +77,7 @@ public class DesktopActivity extends AppCompatActivity {
             Intent loginIntent = new Intent(this, LoginActivity.class);
             startActivity(loginIntent);
             finish();
+
         }
     }
 
@@ -84,6 +90,7 @@ public class DesktopActivity extends AppCompatActivity {
         Intent loginIntent = new Intent(this, LoginActivity.class);
         startActivity(loginIntent);
         finish();
+
     }
 
 

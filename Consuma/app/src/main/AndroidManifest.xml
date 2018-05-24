@@ -34,7 +34,8 @@
         </activity>
         <activity android:name=".MenuListActivity" />
         <activity android:name=".EditMenuActivity" />
-        <activity android:name=".EditProductActivity"></activity>
+        <activity android:name=".EditProductActivity" />
+        <activity android:name=".ReadMenuActivity"></activity>
     </application>
 
 </manifest>

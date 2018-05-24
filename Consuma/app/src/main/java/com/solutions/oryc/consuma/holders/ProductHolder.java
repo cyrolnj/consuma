@@ -16,16 +16,16 @@ import com.solutions.oryc.consuma.control.ProductMenu;
 public class ProductHolder extends RecyclerView.ViewHolder {
 
     private TextView vtxtProductName;
-    private EditText txtProductPrice;
+    private TextView vtxtProductPrice;
 
     public ProductHolder(View itemView) {
         super(itemView);
         vtxtProductName = itemView.findViewById(R.id.vtxtProductName);
-        txtProductPrice = itemView.findViewById(R.id.txtProductPrice);
+        vtxtProductPrice = itemView.findViewById(R.id.vtxtProductPrice);
     }
 
     public void displayProduct(Product currenProduct){
         vtxtProductName.setText(currenProduct.getName());
-        txtProductPrice.setText(String.valueOf(currenProduct.getPrice()));
+        vtxtProductPrice.setText(String.valueOf(currenProduct.getPrice()));
     }
 }
