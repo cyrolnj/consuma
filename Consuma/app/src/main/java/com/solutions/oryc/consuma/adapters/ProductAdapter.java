@@ -1,15 +1,20 @@
 package com.solutions.oryc.consuma.adapters;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
 
+import com.solutions.oryc.consuma.Interfaces.ProductOnItemClickListener;
 import com.solutions.oryc.consuma.R;
 import com.solutions.oryc.consuma.control.Product;
 import com.solutions.oryc.consuma.control.ProductMenu;
 import com.solutions.oryc.consuma.holders.ProductHolder;
 import com.solutions.oryc.consuma.holders.ProductMenuHolder;
+import com.solutions.oryc.consuma.model.ProductMenuDao;
 
 import java.util.ArrayList;
 
@@ -21,15 +26,24 @@ public class ProductAdapter extends RecyclerView.Adapter {
 
     public ArrayList<Product> productList;
     private ProductHolder productHolder;
+    private ProductOnItemClickListener onItemClickListener;
+    private int activity;
 
-    public ProductAdapter(ArrayList<Product> newProductList){
-        this.productList = newProductList;
+
+
+    public ProductAdapter(ArrayList<Product> productList, int activity){
+        this.productList = productList;
+        this.activity = activity;
+    }
+
+    public void setOnItemClickListener(ProductOnItemClickListener listener) {
+        onItemClickListener = listener;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View elementoPrincipalXml = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product, parent, false);
-        productHolder = new ProductHolder(elementoPrincipalXml);
+        View inflatedView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product, parent, false);
+        productHolder = new ProductHolder(inflatedView, onItemClickListener, activity);
         return productHolder;
     }
 
@@ -44,4 +58,6 @@ public class ProductAdapter extends RecyclerView.Adapter {
     public int getItemCount() {
         return this.productList.size();
     }
+
+
 }

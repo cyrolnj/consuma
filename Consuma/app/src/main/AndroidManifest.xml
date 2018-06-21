@@ -35,7 +35,14 @@
         <activity android:name=".MenuListActivity" />
         <activity android:name=".EditMenuActivity" />
         <activity android:name=".EditProductActivity" />
-        <activity android:name=".ReadMenuActivity"></activity>
+        <activity android:name=".ReadMenuActivity" />
+        <activity android:name=".ShowProductMenuQrCodeActivity" />
+        <activity android:name=".ShoppingCartActivity" />
+        <activity android:name=".ShowTransactionQrCodeActivity" />
+        <activity android:name=".ReadProductMenuQrCodeActivity" />
+        <activity android:name=".ReadTransactionQrCodeActivity" />
+        <activity android:name=".ReadTransactionActivity" />
+        <activity android:name=".AddCreditActivity"></activity>
     </application>
 
 </manifest>

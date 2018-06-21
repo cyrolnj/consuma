@@ -50,22 +50,20 @@ public class LoginActivity extends AppCompatActivity {
 
         if (!error) {
 
-            sendToMain(); //Comentar essa linha para ativar o login pelo Firebase
+            //sendToMain(); //Comentar essa linha para ativar o login pelo Firebase
             //Descomentar esse bloco para ativar o login pelo Firebase
 
             //try to log in
-            fbAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener( LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                fbAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener( LoginActivity.this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         String message = "Login realizado com sucesso";
-                        Toast toast = Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG);
-                        toast.show();
+                        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
                         sendToMain();
                     } else {
                         String message = task.getException().getMessage();
-                        Toast toast = Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG);
-                        toast.show();
+                        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
                     }
                 }
 

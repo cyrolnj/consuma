@@ -7,6 +7,7 @@ import android.support.v7.view.menu.MenuAdapter;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,6 +26,7 @@ public class MenuListActivity extends AppCompatActivity {
     private DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("productMenu");
     private ArrayList<ProductMenu> productMenuList = new ArrayList<ProductMenu>();
     private ProductMenuAdapter menuAdapter = new ProductMenuAdapter( productMenuList );
+    private RecyclerView rvMenuList;
 
 
     @Override
@@ -40,6 +42,7 @@ public class MenuListActivity extends AppCompatActivity {
                 for (DataSnapshot child : children ) {
                     ProductMenu currentProductMenu = child.getValue(ProductMenu.class);
                     if (currentProductMenu != null){
+                        currentProductMenu.setId(child.getKey());
                         productMenuList.add(currentProductMenu);
                     }
                 }
@@ -52,7 +55,7 @@ public class MenuListActivity extends AppCompatActivity {
             }
         });
 
-        RecyclerView rvMenuList = findViewById(R.id.rvMenuList);
+        rvMenuList = findViewById(R.id.rvMenuList);
         rvMenuList.setAdapter(menuAdapter);
         rvMenuList.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -61,7 +64,6 @@ public class MenuListActivity extends AppCompatActivity {
         Intent editMenuIntent = new Intent(this, EditMenuActivity.class);
         startActivityForResult(editMenuIntent, 200);
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -14,8 +14,9 @@ import com.solutions.oryc.consuma.model.ProductMenuDao;
 public class EditProductActivity extends AppCompatActivity {
 
     public final int PRODUCT_SAVED = 1;
-    //private Intent resultIntent = new Intent();
-    private ProductMenu menu;
+    //private ProductMenu productMenu;
+    private Product product;
+    private int position;
     private EditText name;
     private EditText price;
 
@@ -24,18 +25,28 @@ public class EditProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_product);
 
-        menu = (ProductMenu) getIntent().getParcelableExtra("productMenu");
-        Toast.makeText(EditProductActivity.this, "Adicionando item ao cardápio: " + menu.getName(), Toast.LENGTH_LONG).show();
+        name = findViewById(R.id.txtProductName);
+        price = findViewById(R.id.txtProductPrice);
+
+        position = (int) getIntent().getIntExtra("position", 0);
+        product = (Product) getIntent().getParcelableExtra("product");
+        if (product == null) {
+            product = new Product();
+        }
+
+        name.setText(product.getName());
+        price.setText(String.valueOf(product.getPrice()));
+
+        //productMenu = (ProductMenu) getIntent().getParcelableExtra("productMenu");
+
     }
 
     public void onClickSaveProduct(View view){
-        Product product = new Product();
-        name = findViewById(R.id.txtProductName);
-        price = findViewById(R.id.txtProductPrice);
         product.setName(name.getText().toString());
         product.setPrice(Float.parseFloat(price.getText().toString()));
         Intent resultIntent = new Intent();
         resultIntent.putExtra("product", product);
+        resultIntent.putExtra("position", position);
         setResult(PRODUCT_SAVED, resultIntent);
         finish();
     }

@@ -13,7 +13,12 @@ public class ProductMenu implements Parcelable {
 
     public String id;
     public String name;
+    public String userId;
     public ArrayList<Product> productList = new ArrayList<Product>();
+
+    public String getUserId() { return userId; }
+
+    public void setUserId(String userId) { this.userId = userId; }
 
     public String getId() { return id; }
 
@@ -22,6 +27,8 @@ public class ProductMenu implements Parcelable {
     public void addProduct (Product product) {
         productList.add(product);
     }
+
+    public void updateProduct (Product product, int position) { productList.set(position, product); }
 
     public String getName() {
         return name;
@@ -46,15 +53,21 @@ public class ProductMenu implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(this.getId());
         parcel.writeString(this.getName());
+        parcel.writeString(this.getUserId());
+        parcel.writeList(this.getProductList());
     }
 
     public static final Creator<ProductMenu> CREATOR = new Creator<ProductMenu>() {
         @Override
         public ProductMenu createFromParcel(Parcel in) {
-            ProductMenu retorno = new ProductMenu();
-            retorno.setName(in.readString());
-            return retorno;
+            ProductMenu productMenu = new ProductMenu();
+            productMenu.setId(in.readString());
+            productMenu.setName(in.readString());
+            productMenu.setUserId(in.readString());
+            productMenu.setProductList(in.readArrayList(Product.class.getClassLoader()));
+            return productMenu;
         }
 
         @Override

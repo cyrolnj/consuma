@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class ProductMenuDao {
 
 
-    private static DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("productMenu/");
+    private static DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("productMenu");
 
     public static ArrayList<ProductMenu> getList(){
 
@@ -41,20 +41,23 @@ public class ProductMenuDao {
             }
         });
 
-
-
         return productMenuList;
     }
 
     public static void createProductMenu (ProductMenu productMenu) {
-        dbRef.push().setValue(productMenu);
-        //productMenu.setId(dbRef.push().getKey().toString());
+        productMenu.setId(dbRef.push().getKey());
+        dbRef.child(productMenu.getId()).setValue(productMenu);
     }
 
     public static void updateProductMenu (ProductMenu productMenu) {
-
+        dbRef.child(productMenu.getId()).setValue(productMenu);
     }
 
+    public static void deleteProductMenu (ProductMenu productMenu) {
+        dbRef.child(productMenu.getId()).removeValue();
+    }
 
-
+    public static void deleteProduct (ArrayList<Product> productList, int index) {
+        productList.remove(index);
+    }
 }

@@ -14,35 +14,71 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.Result;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.solutions.oryc.consuma.control.ProductMenu;
+import com.solutions.oryc.consuma.control.UserInformation;
 
 
 public class DesktopActivity extends AppCompatActivity {
 
-    private FirebaseUser logedInUser;
+    private FirebaseUser user;
+    private UserInformation userInformation;
     private FirebaseAuth fbAuth = FirebaseAuth.getInstance();
+    private TextView vtxtCredit;
+    private DatabaseReference dbRef;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_desktop);
+
+        vtxtCredit = findViewById(R.id.vtxtCredit);
+        user = fbAuth.getCurrentUser();
+        if (user != null) {
+            dbRef = FirebaseDatabase.getInstance().getReference("userInformation/" + user.getUid());
+            dbRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    userInformation = dataSnapshot.getValue(UserInformation.class);
+                    vtxtCredit.setText(String.valueOf(userInformation.getCurrentCredit()));
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }
+
     }
 
 
     public void onClickReadMenu (View view) {
-        final Activity activity = this;
+        Intent readProductMenuQrcodeIntent = new Intent(this, ReadProductMenuQrCodeActivity.class);
+        startActivity(readProductMenuQrcodeIntent);
+        /*final Activity activity = this;
         IntentIntegrator integrator = new IntentIntegrator(activity);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
         integrator.setCameraId(0);
-        integrator.initiateScan();
+        integrator.initiateScan();*/
+    }
+
+    public void onClickSell(View view){
+        Intent readTransactionQrCodeIntent = new Intent(this, ReadTransactionQrCodeActivity.class);
+        startActivity(readTransactionQrCodeIntent);
     }
 
     public void onClickMenuList (View view) {
@@ -52,27 +88,26 @@ public class DesktopActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        /*
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if(result != null) {
             if(result.getContents() == null) {
                 Toast.makeText(this, "Cancelado", Toast.LENGTH_LONG).show();
             } else {
                 //Toast.makeText(this, "Scaneado: " + result.getContents(), Toast.LENGTH_LONG).show();
-
                 Intent readProductMenuIntent = new Intent(this, ReadMenuActivity.class);
                 readProductMenuIntent.putExtra("productMenuId", result.getContents());
                 startActivityForResult(readProductMenuIntent, 200);
             }
-        }
+        }*/
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        FirebaseUser user = fbAuth.getCurrentUser();
+        user = fbAuth.getCurrentUser();
         if (user != null) {
-            this.logedInUser = user;
         } else {
             Intent loginIntent = new Intent(this, LoginActivity.class);
             startActivity(loginIntent);
@@ -90,7 +125,11 @@ public class DesktopActivity extends AppCompatActivity {
         Intent loginIntent = new Intent(this, LoginActivity.class);
         startActivity(loginIntent);
         finish();
+    }
 
+    public void onClickAddCredit(View view){
+        Intent addCreditIntent = new Intent(this, AddCreditActivity.class);
+        startActivity(addCreditIntent);
     }
 
 

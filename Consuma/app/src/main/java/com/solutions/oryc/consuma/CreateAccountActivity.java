@@ -16,10 +16,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.solutions.oryc.consuma.control.UserInformation;
+import com.solutions.oryc.consuma.model.UserInformationDao;
 
 public class CreateAccountActivity extends AppCompatActivity {
 
     private FirebaseAuth fbAuth = FirebaseAuth.getInstance();
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,9 +76,14 @@ public class CreateAccountActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
+                        user = fbAuth.getCurrentUser();
+                        UserInformation userInformation = new UserInformation();
+                        userInformation.setUserId(user.getUid());
+                        userInformation.setCurrentCredit(0);
+                        UserInformationDao.createUserInformation(userInformation);
+
                         String message = "Cadastro realizado com sucesso";
-                        Toast toast = Toast.makeText(CreateAccountActivity.this, message, Toast.LENGTH_LONG);
-                        toast.show();
+                        Toast.makeText(CreateAccountActivity.this, message, Toast.LENGTH_LONG).show();
                         sendToMain();
                     } else {
                         String message = task.getException().getMessage();

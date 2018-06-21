@@ -4,40 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.solutions.oryc.consuma.EditMenuActivity"
-    tools:layout_editor_absoluteY="81dp"
+    tools:context=".ShowProductMenuQrCodeActivity"
     android:background="@drawable/background1"
     >
 
-    <EditText
-        android:id="@+id/txtMenuName"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/vtxtProductMenuTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/textBox"
-        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/titles"
         android:textSize="@dimen/product_menu_title"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvProductList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/imgProductMenuQrCode"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@+id/btnSaveMenu"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtMenuName"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/vtxtProductMenuTitle"
+        app:srcCompat="@drawable/ic_launcher_background" />
 
     <Button
         android:id="@+id/btnSaveMenu"
@@ -47,25 +44,12 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:background="@color/btnBackground"
-        android:onClick="onClickSaveMenu"
-        android:text="@string/save"
+        android:onClick="onClickSendToEmail"
+        android:text="@string/send_to_e_mail"
         android:textColor="@color/btnText"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabAddProduct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:onClick="onClickNewProduct"
-        android:src="@drawable/ic_add_white_48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:rippleColor="@color/colorPrimary" />
 
 </android.support.constraint.ConstraintLayout>

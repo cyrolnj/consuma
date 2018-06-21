@@ -10,7 +10,12 @@ import android.os.Parcelable;
 public class Product implements Parcelable {
 
     public String name;
-    public float price;
+    public double price;
+    public int quantity;
+
+    public int getQuantity() { return quantity; }
+
+    public void setQuantity(int quantity) { this.quantity = quantity; }
 
     public String getName() {
         return name;
@@ -20,11 +25,11 @@ public class Product implements Parcelable {
         this.name = name;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -37,16 +42,18 @@ public class Product implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(this.getName());
-        parcel.writeFloat(this.getPrice());
+        parcel.writeDouble(this.getPrice());
+        parcel.writeInt(this.getQuantity());
     }
 
     public static final Creator<Product> CREATOR = new Creator<Product>() {
         @Override
         public Product createFromParcel(Parcel in) {
-            Product retorno = new Product();
-            retorno.setName(in.readString());
-            retorno.setPrice(in.readFloat());
-            return retorno;
+            Product product = new Product();
+            product.setName(in.readString());
+            product.setPrice(in.readDouble());
+            product.setQuantity(in.readInt());
+            return product;
         }
 
         @Override

@@ -22,6 +22,16 @@
     <string name="price">Price:</string>
     <string name="new_product">New Product</string>
     <string name="short_description">Short description:</string>
-    <string name="menu_list">Menu List</string>
     <string name="currency">$</string>
+    <string name="qrcode">QRcode</string>
+    <string name="send_to_e_mail">Send to e-mail</string>
+    <string name="hint_product_name">Product name</string>
+    <string name="buy">Buy</string>
+    <string name="cancel">Cancel</string>
+    <string name="transaction_hint">This is your transaction ID. Present it to an attendant</string>
+    <string name="cancel_transaction">Cancel Transaction</string>
+    <string name="sell">Sell</string>
+    <string name="confirm_sell">Confirm Sell</string>
+    <string name="cancel_sell">Cancel Sell</string>
+    <string name="add_credit">Add Credit</string>
 </resources>
