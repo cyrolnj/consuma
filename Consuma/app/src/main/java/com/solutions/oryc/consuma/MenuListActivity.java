@@ -9,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,6 +29,7 @@ public class MenuListActivity extends AppCompatActivity {
     private ArrayList<ProductMenu> productMenuList = new ArrayList<ProductMenu>();
     private ProductMenuAdapter menuAdapter = new ProductMenuAdapter( productMenuList );
     private RecyclerView rvMenuList;
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
 
     @Override
@@ -42,8 +45,10 @@ public class MenuListActivity extends AppCompatActivity {
                 for (DataSnapshot child : children ) {
                     ProductMenu currentProductMenu = child.getValue(ProductMenu.class);
                     if (currentProductMenu != null){
-                        currentProductMenu.setId(child.getKey());
-                        productMenuList.add(currentProductMenu);
+                        if(currentProductMenu.getUserId().equals(user.getUid())) {
+                            currentProductMenu.setId(child.getKey());
+                            productMenuList.add(currentProductMenu);
+                        }
                     }
                 }
                 menuAdapter.notifyDataSetChanged();
